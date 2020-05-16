@@ -5,7 +5,7 @@ This app allow upload images (jpg, png, svg) and build my own gallery.
 > - **Desktop view:** Drag and drop images.
 > - **Mobile view:** Input type file.
 
-**Demo:** https://jleon253.github.io/firegallery/galeria
+**Demo:** https://jleon253.github.io/firegallery
 
 ### Dev tools used:
 
