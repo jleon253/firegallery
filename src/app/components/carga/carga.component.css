@@ -1,0 +1,41 @@
+.btn:disabled{
+  cursor: not-allowed;
+}
+
+.drag{
+  border-color:#fff;
+  border-width: 5px;
+  border-style: dashed;
+  border-radius: 10px;
+  transition: border-color 0.5s ease-out;
+}
+
+.drag-over{
+  background-color: #f2f2f2;
+  animation-name: dragOverAnim;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+.drag-over > .img-drag{
+  opacity: 0;
+}
+
+.img-drag{
+  width: 30%;
+}
+
+@keyframes dragOverAnim{
+  from{
+    border-color:#efa741;
+  }
+  to{
+    border-color:#f3d2a4;
+  }
+}
+
+#inputFile + .custom-file-label::after{
+  content: 'Buscar';
+}

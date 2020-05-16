@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row position-fixed w-100"
+    style="z-index: 999; right: 10px;">
+    <div class="col-lg-6 offset-lg-6">
+      <div *ngFor="let subido of cargaService.archivosSubidos"
+        class="alert alert-success alert-dismissible fade show shadow"
+        style="font-size: 12px;"
+        role="alert">
+          <strong>{{subido.nombreArchivo}}</strong> quedo en Galería.
+        <button type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div 
+        *ngFor="let existe of cargaService.archivosExisten"
+        class="alert alert-danger alert-dismissible fade show shadow"
+        style="font-size: 12px;"
+        role="alert">
+          <strong>{{existe}}</strong> ya está en lista.
+        <button type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center d-none d-xl-block">
+      <h4 class="font-weight-light">Arrastra y suelta las <b>imagenes</b> a subir</h4>
+      <div appNgDropFiles
+        (mouseSobre)="estaSobreElemento = $event"
+        [ngClass]="{'drag-over' : estaSobreElemento}"
+        class="drag">
+        <img class="img-fluid img-drag"
+          src="/assets/drag-drop.gif"
+          alt="zona de arrastre para las imagenes">
+      </div>
+    </div>
+    <div class="col-12 text-center d-xl-none">
+      <h4 class="font-weight-light">Selecciona las imagenes a subir</h4>
+      <div class="d-block mx-auto">
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input #if
+              type="file"
+              class="custom-file-input"
+              id="inputFile"
+              multiple>
+            <label class="custom-file-label"
+              for="inputFile"></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-12 mt-3" *ngIf="cargaService.archivosASubir.length > 0">
+      <div class="table-responsive">
+        <table class="table text-center text-capitalize"
+          style="font-size: 14px;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Quitar</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Tamaño</th>
+              <th scope="col">Progreso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let archivo of cargaService.archivosASubir ; let i = index"
+              [ngClass]="{'table-success':(archivo.progeso >= 100 && !archivo.estaSubiendo)}">
+              <td>
+                <button type="button"
+                  class="btn btn-danger btn-sm"
+                  (click)="cargaService.quitarItem(i)">X</button>
+              </td>
+              <td>
+                <strong>
+                  {{ archivo.nombreArchivo }}
+                </strong>
+              </td>
+              <td>
+                {{ archivo.archivo.type }}
+              </td>
+              <td>
+                {{ archivo.archivo.size / 1024 / 1024 | number:'.3-3'}} Mb
+              </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar"
+                    role="progressbar"
+                    [ngStyle]="{'width':archivo.progeso+'%'}"
+                    [ngClass]="{'bg-success':archivo.progeso >= 100,'bg-primary':archivo.progeso < 100}">
+                    {{archivo.progeso | number:'.1-1'}}%
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+    </div>
+    <div class="col-12 mt-3 text-center" *ngIf="cargaService.archivosASubir.length > 0">
+      <button type="button"
+        class="btn btn-warning btn-sm m-1"
+        (click)="subirImagenes()"
+        [disabled]="cargaService.archivosASubir.length === 0 || subiendo">Subir a Galería</button>
+      <button type="button"
+        (click)="cargaService.limpiar()"
+        class="btn btn-outline-secondary btn-sm m-1">Vaciar lista</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row" *ngIf="!(items |async)?.length">
+    <div class="col-12">
+      <div class="alert alert-info" role="alert">
+        No hay imagenes para mostrar
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card-columns">
+        <div class="card"
+          *ngFor="let item of items | async">
+          <img [src]="item.url"
+            class="card-img-top"
+            alt="...">
+          <div class="card-footer">
+            <small class="text-muted">{{ item.nombre }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
