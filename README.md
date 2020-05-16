@@ -1,4 +1,17 @@
-# FotosFirebase
+# FireGallery
+
+This app allow upload images (jpg, png, svg) and build my own gallery.
+
+> - **Desktop view:** Drag and drop images.
+> - **Mobile view:** Input type file.
+
+**Demo:** https://jleon253.github.io/firegallery/galeria
+
+### Dev tools used:
+
+> - HTML, CSS, Boostrap 4, SweepAlert 2
+> - ES6, Angular 8, Angular Fire 2 (https://github.com/angular/angularfire)
+> - FireBase (Database & Storage)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
 
