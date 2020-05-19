@@ -1,3 +1,3 @@
 export const environment = {
- production: ɵbypassSanitizationTrustStyle
+ production: true
 }
